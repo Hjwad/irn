@@ -75,11 +75,14 @@ async def log_(client, message, _):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-@app.on_message(filters.command(["getlog", "logs", "getlogs"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & SUDOERS)
+@app.on_message(filters.command(["getlog", "logs", "getlogs","log"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & SUDOERS)
 @language
 async def log_(client, message, _):
     try:
-        await message.reply_document(document="log.txt")
+        with open("log.txt", "r") as log_file:
+            logs_content = log_file.read()
+        a = await AlinaBin(logs_content)
+        await message.reply_text(a)
     except:
         await message.reply_text(_["server_1"])
 
