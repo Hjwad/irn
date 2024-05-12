@@ -35,7 +35,7 @@ from config import BANNED_USERS, lyrical
 from time import time
 from strings.filters import command 
 from AlinaXIQ.utils.extraction import extract_user
-user_name
+
 @app.on_message(
      command(
         [
@@ -1024,7 +1024,7 @@ async def stream(
                 file_path,
                 title,
                 duration_min,
-                user_name,
+                user_mention,
                 streamtype,
                 user_id,
                 "video" if video else "audio",
@@ -1118,7 +1118,7 @@ async def stream(
                 "index_url",
                 title,
                 duration_min,
-                user_name,
+                user_mention,
                 link,
                 "video" if video else "audio",
             )
