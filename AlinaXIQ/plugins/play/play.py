@@ -35,7 +35,7 @@ from config import BANNED_USERS, lyrical
 from time import time
 from strings.filters import command 
 from AlinaXIQ.utils.extraction import extract_user
-
+user_name
 @app.on_message(
      command(
         [
