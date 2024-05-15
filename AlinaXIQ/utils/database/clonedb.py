@@ -1,4 +1,4 @@
-"""from AlinaXIQ.core.mongo import mongodb
+from AlinaXIQ.core.mongo import mongodb
 from typing import Dict, List, Union
 
 cloneownerdb = mongodb.cloneownerdb
@@ -29,4 +29,3 @@ async def get_clonebot_username(bot_id):
         return result.get("user_name")
     else:
         return False
-"""
