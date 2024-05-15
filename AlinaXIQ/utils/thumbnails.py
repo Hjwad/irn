@@ -19,6 +19,12 @@ def changeImageSize(maxWidth, maxHeight, image):
     newImage = image.resize((newWidth, newHeight))
     return newImage
 
+async def get_qthumb(videoid):
+    try:
+        url = f"https://img.youtube.com/vi/{videoid}/maxresdefault.jpg"
+        return url
+    except Exception:
+        return YOUTUBE_IMG_URL
 
 async def get_thumb(videoid):
     if os.path.isfile(f"cache/{videoid}.png"):
