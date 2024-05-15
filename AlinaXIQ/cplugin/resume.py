@@ -8,7 +8,7 @@ from AlinaXIQ.utils.decorators import AdminRightsCheck
 from AlinaXIQ.utils.inline import close_markup
 from config import BANNED_USERS
 from AlinaXIQ import userbot
-from AlinaXIQ.core.mongo import mongodb, pymongodb
+from AlinaXIQ.core.mongo import mongodb
 
 authdb = mongodb.adminauth
 authuserdb = mongodb.authuser
@@ -18,7 +18,6 @@ blacklist_chatdb = mongodb.blacklistChat
 blockeddb = mongodb.blockedusers
 chatsdb = mongodb.chats
 channeldb = mongodb.cplaymode
-clonebotdb = pymongodb.clonebotdb
 countdb = mongodb.upcount
 gbansdb = mongodb.gban
 langdb = mongodb.language
