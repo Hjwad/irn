@@ -70,7 +70,7 @@ async def clone_txt(client, message):
             clonebotdb.insert_one(details)
             CLONES.add(bot.id)
             await mi.edit_text(
-                f"🤖| بۆتی @{bot.username}\n✅| بە سەرکەوتوویی دروستکرا\n❌| دەتوانی بیسڕیتەوە بەم فەرمانە : /delclone**"
+                f"**🤖| بۆتی @{bot.username}\n✅| بە سەرکەوتوویی دروستکرا\n❌| دەتوانی بیسڕیتەوە بەم فەرمانە : /delclone**"
             )
         except BaseException as e:
             logging.exception("Error while cloning bot.")
