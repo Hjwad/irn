@@ -11,7 +11,9 @@ from .logging import LOGGER
 
 SUDOERS = filters.user()
 
+
 HAPP = None
+clonedb = None
 _boot_ = time.time()
 
 
@@ -38,8 +40,10 @@ XCB = [
 
 def dbb():
     global db
+    global clonedb
+    clonedb = {}
     db = {}
-    LOGGER(__name__).info(f"𝗗𝗔𝗧𝗔𝗕𝗔𝗦𝗘 𝗟𝗢𝗔𝗗 𝗕𝗔𝗕𝗬🍫........")
+    LOGGER(__name__).info(f"💖𝐃𝐚𝐭𝐚𝐛𝐚𝐬𝐞 𝐋𝐨𝐚𝐝𝐞𝐝...")
 
 
 async def sudo():
