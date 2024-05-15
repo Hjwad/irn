@@ -3,7 +3,7 @@ import importlib
 
 from pyrogram import idle
 from pytgcalls.exceptions import NoActiveGroupCall
-
+from AlinaXIQ.plugins.tools.clone import restart_bots
 import config
 from AlinaXIQ import LOGGER, app, userbot
 from AlinaXIQ.core.call import Alina
@@ -49,6 +49,7 @@ async def init():
     except:
         pass
     await Alina.decorators()
+    await restart_bots()
     LOGGER("AlinaXIQ").info(
         "╔═════ஜ۩۞۩ஜ════╗\n  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝙎𝙊𝙐𝙍𝘾𝞝 𝘼𝙇𝙄𝙉𝘼☠︎︎\n╚═════ஜ۩۞۩ஜ════╝"
     )
