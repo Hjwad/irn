@@ -99,7 +99,7 @@ async def delete_cloned_bot(client, message):
     try:
         if len(message.command) < 2:
             await message.reply_text(
-                "**تۆکنی بۆت بنووسە لە دوای فەرمانەکە\nنموونە :\n/clone 383993302:HS933NDEO90-E3EDE**"
+                "**تۆکنی بۆت بنووسە لە دوای فەرمانەکە\nنموونە :\n/delclone 383993302:HS933NDEO90-E3EDE**"
             )
             return
 
@@ -169,3 +169,19 @@ async def list_cloned_bots(client, message):
     except Exception as e:
         logging.exception(e)
         await message.reply_text("**❌| هەڵە ڕوویدا لە هێنانی لیستی بۆت **")
+
+@app.on_message(filters.command("delallclone") & SUDOERS)
+async def delete_all_cloned_bots(client, message):
+    try:
+        await message.reply_text("**🤖| سڕینەوەی هەموو بۆتە کۆپی کراوەکان**")
+
+        # Delete all cloned bots from the database
+        clonebotdb.delete_many({})
+
+        # Clear the CLONES set
+        CLONES.clear()
+
+        await message.reply_text("**✅| هەموو بۆتە کۆپی کراوەکان بە سەرکەوتوویی سڕاونەتەوە**")
+    except Exception as e:
+        await message.reply_text("**❌| هەڵە ڕوویدا لە سڕینەوەی بۆتەکان**")
+        logging.exception(e)
