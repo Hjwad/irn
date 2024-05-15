@@ -571,3 +571,37 @@ def panel_markup_4(_, vidid, chat_id, played, dur):
     ]
 
     return buttons
+
+def panel_markup_clone(_, vidid, chat_id):
+    buttons = [
+        [
+            InlineKeyboardButton(
+                text=_["S_B_3"],
+                url=f"https://t.me/{app.username}?startgroup=true",
+            ),
+        ],
+        [
+            InlineKeyboardButton(text="▷", callback_data=f"ADMIN Resume|{chat_id}"),
+            InlineKeyboardButton(text="II", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(text="↻", callback_data=f"ADMIN Replay|{chat_id}"),
+
+            InlineKeyboardButton(text="‣‣I", callback_data=f"ADMIN Skip|{chat_id}"),
+            InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}"),
+        ],
+        [
+            InlineKeyboardButton(
+                text=_["P_B_2"],
+                callback_data=f"downloadvideo {vidid}"),
+            InlineKeyboardButton(
+                text=_["P_B_1"],
+                callback_data=f"downloadaudio {vidid}")
+        ],
+        [
+            InlineKeyboardButton(
+                text= "✚ ᴘʟᴀʏʟɪsᴛ ✚",
+                callback_data=f"vip_playlist {vidid}"
+            ),
+        ],
+    ]
+
+    return buttons
