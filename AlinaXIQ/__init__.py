@@ -16,6 +16,9 @@ app = Alina()
 api = SafoneAPI()
 userbot = Userbot()
 
+### Modules
+MOD_LOAD = []
+MOD_NOLOAD = []
 
 from .platforms import *
 
