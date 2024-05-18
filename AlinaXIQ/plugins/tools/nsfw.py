@@ -6,7 +6,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from AlinaXIQ import app
 from AlinaXIQ.misc import SUDOERS
-from AlinaXIQ.utils.error import capture_err
+from AlinaXIQ.utils.errors import capture_err
 from config import adminlist
 
 
