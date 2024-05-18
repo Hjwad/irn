@@ -10,10 +10,13 @@ from AlinaXIQ.utils.errors import capture_err
 from config import adminlist
 
 
-def check_nsfw(image_url: str) -> bool:
+def check_nsfw(image_url: str) -> dict:
     client = lexi()
     response = client.AntiNsfw(image_url)
-    return not response["content"]["sfw"]
+    if response["content"]["sfw"] == True:
+        return False
+    else:
+        return True
 
 
 @app.on_message(
@@ -30,7 +33,7 @@ async def nsfw(_, message: Message):
     url = "https://telegra.ph" + uploaded_file
     try:
         nsfw = check_nsfw(url)
-        if nsfw:
+        if nsfw == True:
             await message.reply_text("NSFW content detected")
         else:
             await message.reply_text("Safe file, no NSFW content detected")
