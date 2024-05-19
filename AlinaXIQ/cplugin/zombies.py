@@ -105,10 +105,10 @@ async def admins(client, message):
     text2 = f"**ستافی گرووپ - {message.chat.title}**\n\n"
     try:
       owner = ownerList[0]
-      if owner.username == None:
+      if not owner.username == None:
         text2 += f"👑 ᴏᴡɴᴇʀ\n└ {owner.mention}\n\n👮🏻 ᴀᴅᴍɪɴs\n"
       else:
-        text2 += f"👑 ᴏᴡɴᴇʀ\n└ @{owner.username}\n\n👮🏻 ᴀᴅᴍɪɴs\n"
+        text2 += f"👑 ᴏᴡɴᴇʀ\n└[{owner.first_name}](tg://openmessage?user_id={owner.id})\n\n👮🏻 ᴀᴅᴍɪɴs\n"
     except:
       text2 += f"👑 ᴏᴡɴᴇʀ\n└ <i>Hidden</i>\n\n👮🏻 ᴀᴅᴍɪɴs\n"
     if len(adminList) == 0:
