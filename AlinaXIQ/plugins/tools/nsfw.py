@@ -4,11 +4,11 @@ from lexica import Client as lexi
 from telegraph import upload_file
 from pyrogram import filters
 from pyrogram.types import Message
+from pyrogram.enums import ChatMembersFilter
 from AlinaXIQ import app
 from AlinaXIQ.misc import SUDOERS
 from AlinaXIQ.utils.errors import capture_err
 from config import adminlist
-
 
 def check_nsfw(image_url: str) -> dict:
     client = lexi()
@@ -24,8 +24,12 @@ def check_nsfw(image_url: str) -> dict:
 )
 @capture_err
 async def nsfw(_, message: Message):
-    admins = adminlist.get(message.chat.id)
-    if message.from_user.id in admins or message.from_user.id in SUDOERS:
+    admins = app.get_chat_members(
+        message.chat.id, filter=ChatMembersFilter.ADMINISTRATORS
+    )
+    admins_list = [admin.user.id async for admin in admins]
+
+    if message.from_user.id in admins_list or message.from_user.id in SUDOERS:
         return
 
     photo = await app.download_media(message.photo.file_id)
