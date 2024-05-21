@@ -59,5 +59,4 @@ pycryptodome
 opencv-python-headless==4.9.0.80
 mpv
 MukeshAPI
-pymongo==4.6.2
 lexica-api
