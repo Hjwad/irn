@@ -5,12 +5,12 @@ from datetime import datetime, timedelta
 from typing import Union
 
 from pyrogram import Client
+from ntgcalls import TelegramServerError
 from pyrogram.types import InlineKeyboardMarkup
 from pytgcalls import PyTgCalls, filters
 from pytgcalls.exceptions import (
     AlreadyJoinedError,
     NoActiveGroupCall,
-    TelegramServerError,
 )
 from pytgcalls.types import (
     MediaStream,
