@@ -110,12 +110,12 @@ async def helper_private(
         except:
             pass
         chat_id = update.message.chat.id
-        chat_id = message.chat.id
+        chat_idd = message.chat.id
         message_id = message.id
         language = await get_lang(chat_id)
         _ = get_string(language)
         keyboard = first_page(_)
-        await app.send_reaction(chat_id, message_id, random.choice(emoji))
+        await app.send_reaction(chat_idd, message_id, random.choice(emoji))
         await update.edit_message_text(
             _["help_1"].format(SUPPORT_CHAT), reply_markup=keyboard
         )
@@ -127,7 +127,7 @@ async def helper_private(
         language = await get_lang(update.chat.id)
         _ = get_string(language)
         keyboard = first_page(_)
-        await app.send_reaction(chat_id, message_id, random.choice(emoji))
+        await app.send_reaction(chat_idd, message_id, random.choice(emoji))
         await update.reply_photo(
             photo=START_IMG_URL,
             caption=_["help_1"].format(SUPPORT_CHAT),
@@ -162,6 +162,7 @@ async def help_com_group(client, message: Message, _):
         user_last_message_time[user_id] = current_time
 
     keyboard = private_help_panel(_)
+    await app.send_reaction(chat_id, message_id, random.choice(emoji))
     await message.reply_text(_["help_2"], reply_markup=InlineKeyboardMarkup(keyboard))
 
 
