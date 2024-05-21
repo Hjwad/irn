@@ -6,11 +6,11 @@ from typing import Union
 
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup
-from ntgcalls import TelegramServerError
 from pytgcalls import PyTgCalls, filters
 from pytgcalls.exceptions import (
     AlreadyJoinedError,
     NoActiveGroupCall,
+    TelegramServerError,
 )
 from pytgcalls.types import (
     MediaStream,
