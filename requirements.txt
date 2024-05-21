@@ -27,11 +27,10 @@ pytz
 future==0.18.3
 search_engine_parser
 py-tgcalls==2.0.1
-pyrofork
 ntgcalls
 pykeyboard
 pyshorteners
-#git+https://github.com/KurimuzonAkuma/pyrogram@dev
+git+https://github.com/KurimuzonAkuma/pyrogram@dev
 python-dotenv
 pyyaml==6.0.1
 requests
@@ -60,3 +59,4 @@ opencv-python-headless==4.9.0.80
 mpv
 MukeshAPI
 lexica-api
+pymongo==4.6.2
