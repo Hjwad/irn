@@ -2,25 +2,17 @@ import random
 from pyrogram import Client
 from pyrogram.types import Message
 from pyrogram import filters
-from pyrogram.types import(InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto, InputMediaVideo, Message)
-from config import GROUP_BOT, LOGGER_ID
-from AlinaXIQ import app 
+from pyrogram.types import (
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InputMediaPhoto,
+    InputMediaVideo,
+    Message,
+)
+from config import LOGGER_ID, GROUP_BOT
+from AlinaXIQ import app
+from AlinaXIQ.utils.database import get_assistant
 from AlinaXIQ.utils.database import delete_served_chat
-from pyrogram.errors import RPCError
-from pyrogram.types import ChatMemberUpdated, InlineKeyboardMarkup, InlineKeyboardButton
-from os import environ
-from typing import Union, Optional
-from PIL import Image, ImageDraw, ImageFont
-from os import environ
-from pyrogram.types import ChatJoinRequest, InlineKeyboardButton, InlineKeyboardMarkup
-from PIL import Image, ImageDraw, ImageFont
-import asyncio, os, time, aiohttp
-from pathlib import Path
-from PIL import Image, ImageDraw, ImageFont
-from asyncio import sleep
-from pyrogram import filters, Client, enums
-from pyrogram.enums import ParseMode
-from pyrogram.types import ChatMemberUpdated
 
 
 photo = [
@@ -63,15 +55,24 @@ async def join_watcher(_, message):
 
 
 
+
 @app.on_message(filters.left_chat_member)
 async def on_left_chat_member(_, message: Message):
-    if (await app.get_me()).id == message.left_chat_member.id:
-        remove_by = message.from_user.mention if message.from_user else "**بەکارهێنەری نەناسراو**"
-        title = message.chat.title
-        username = f"@{message.chat.username}" if message.chat.username else "**گرووپی تایبەت**"
-        chat_id = message.chat.id
-        left = f"**✫ لێفتی گرووپ ✫\n\nناوی گرووپ : {title}**\n\n**ئایدی گرووپ :** `{chat_id}`\n\n**دەرکرا لەلایەن : {remove_by}\n\nبۆت : @{app.username} **"
-        await app.send_photo(GROUP_BOT, photo=random.choice(photo), caption=left, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"نوێکارییەکانی ئەلینا 🍻", url=f"https://t.me/MGIMT")]]))
-        await delete_served_chat(chat_id)
-except Exception as e:
-    return
+    try:
+        userbot = await get_assistant(message.chat.id)
+
+        left_chat_member = message.left_chat_member
+        if left_chat_member and left_chat_member.id == (await app.get_me()).id:
+            remove_by = (
+                message.from_user.mention if message.from_user else "**بەکارهێنەری نەناسراو**"
+            )
+            title = message.chat.title
+            username = (
+                f"@{message.chat.username}" if message.chat.username else "**گرووپی تایبەت**"
+            )
+            chat_id = message.chat.id
+            left = f"**✫ لێفتی گرووپ ✫\n\nناوی گرووپ : {title}**\n\n**ئایدی گرووپ :** `{chat_id}`\n\n**دەرکرا لەلایەن : {remove_by}\n\nبۆت : @{app.username} **"
+            await app.send_photo(GROUP_BOT, photo=random.choice(photo), caption=left, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(f"نوێکارییەکانی ئەلینا 🍻", url=f"https://t.me/MGIMT")]]))
+            await delete_served_chat(chat_id)
+    except Exception as e:
+        return
