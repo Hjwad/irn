@@ -59,4 +59,3 @@ opencv-python-headless==4.9.0.80
 mpv
 MukeshAPI
 lexica-api
-pymongo==4.6.2
