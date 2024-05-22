@@ -11,12 +11,15 @@ from AlinaXIQ.utils.alina_ban import admin_filter
 SPAM_CHATS = []
 
 
-@Client.on_message(
-    filters.command(["mantion", "all", "تاگ", "all"], prefixes=["/", "@", ".", "#",""])
+@app.on_message(
+    filters.command(["all", "mention", "mentionall","تاگ"], prefixes=["/", "@", ".", ""])
     & admin_filter
 )
-async def tag_all_users(client, _, message):
-
+async def tag_all_users(_, message):
+    if message.chat.id in SPAM_CHATS:
+        return await message.reply_text(
+            "** پڕۆسەی تاگکردن چالاکە پێویستە ڕایبگری بە فەرمانی ➥ /cancel\nدواتر دووبارەی بکەیتەوە**"
+        )
     replied = message.reply_to_message
     if len(message.command) < 2 and not replied:
         await message.reply_text(
@@ -27,12 +30,12 @@ async def tag_all_users(client, _, message):
         SPAM_CHATS.append(message.chat.id)
         usernum = 0
         usertxt = ""
-        async for m in client.get_chat_members(message.chat.id):
+        async for m in app.get_chat_members(message.chat.id):
             if message.chat.id not in SPAM_CHATS:
                 break
-            usernum += 5
+            usernum += 1
             usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
-            if usernum == 1:
+            if usernum == 5:
                 await replied.reply_text(usertxt)
                 await asyncio.sleep(2)
                 usernum = 0
@@ -47,13 +50,13 @@ async def tag_all_users(client, _, message):
         SPAM_CHATS.append(message.chat.id)
         usernum = 0
         usertxt = ""
-        async for m in client.get_chat_members(message.chat.id):
+        async for m in app.get_chat_members(message.chat.id):
             if message.chat.id not in SPAM_CHATS:
                 break
             usernum += 1
             usertxt += f"\n⊚ [{m.user.first_name}](tg://user?id={m.user.id})\n"
             if usernum == 5:
-                await client.send_message(
+                await app.send_message(
                     message.chat.id,
                     f"{text}\n{usertxt}\n\n|| ➥ ᴏғғ ᴛᴀɢɢɪɴɢ ʙʏ » /cancel ||",
                 )
@@ -66,13 +69,13 @@ async def tag_all_users(client, _, message):
             pass
 
 
-@Client.on_message(
+@app.on_message(
     filters.command(
         [
             "stopmention",
             "offall",
-            "وەستانی تاگ",
             "cancel",
+            "وەستانی تاگ",
             "allstop",
             "stopall",
             "cancelmention",
@@ -82,7 +85,7 @@ async def tag_all_users(client, _, message):
             "cancelall",
             "allcancel",
         ],
-        prefixes=["/", "@", "#",""],
+        prefixes=["/", "@", "#"],
     )
     & admin_filter
 )
