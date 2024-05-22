@@ -17,7 +17,6 @@ from pytgcalls.types import (
     AudioQuality,
     VideoQuality,
     Update,
-    ChatUpdate,
 )
 from pytgcalls.types.stream import StreamAudioEnded
 
